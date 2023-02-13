@@ -1,5 +1,6 @@
 from typing import List
 from src.shared.domain.entities.member import Member
+from src.shared.domain.entities.project import Project
 from src.shared.domain.enums.active_enum import ACTIVE
 from src.shared.domain.enums.course_enum import COURSE
 from src.shared.domain.enums.role_enum import ROLE
@@ -12,8 +13,36 @@ from src.shared.helpers.errors.usecase_errors import NoItemsFound
 
 class MemberRepositoryMock(IMemberRepository):
     members = List[Member]
-    
+    projects = List[Project]
     def __init__(self):
+        self.projects = [
+            Project(
+                code="MF",
+                name="Maua Food",
+                description="É um aplicativo #foramoleza"
+                ),
+            Project(
+                code="PT",
+                name="Portfólio",
+                description="É um site"
+            ),
+            Project(
+                code="SF",
+                name="Selfie Mauá",
+                description="Aplicativo para reconhecimento facial"
+            ),
+            Project(
+                code="SM",
+                name="SMILE",
+                description="Site do evento SMILE"
+            ),
+            Project(
+                code="GM",
+                name="Gameficação",
+                description="Projeto para organização dos membros do DEV"
+            )
+        ]
+        
         self.members = [
             Member(
             name="Vitor Guirão MPNTM",
