@@ -177,3 +177,22 @@ class MemberRepositoryMock(IMemberRepository):
             ]
             )
         ]
+        
+    def get_member(self, ra: str) -> Member:
+        for member in self.members:
+            if member.ra == ra:
+                return member
+            
+        return None
+    
+    def create_member(self, member: Member) -> Member:
+        self.members.append(member)
+        return member
+    
+    def get_members(self, ras: List[str]) -> List[Member]:
+        members = []
+        for member in self.members:
+            if member.ra in ras:
+                members.append(member)
+                
+        return members
