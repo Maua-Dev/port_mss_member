@@ -4,5 +4,5 @@ from src.shared.infra.repositories.member_repository_mock import MemberRepositor
 import pytest
 
 
-class Test_UserRepositoryMock:
+class Test_MemberRepositoryMock:
     pass
