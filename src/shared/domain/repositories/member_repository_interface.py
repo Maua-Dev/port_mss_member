@@ -3,4 +3,6 @@ from typing import List
 
 class IMemberRepository(ABC):
 
-    pass
+    @abstractmethod
+    def get_member(self, ra: str) -> Member:
+        pass
