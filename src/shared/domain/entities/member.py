@@ -12,6 +12,7 @@ from src.shared.helpers.errors.domain_errors import EntityError, EntityParameter
 class Member(abc.ABC):
     name: str
     email: str
+    email_maua: str
     ra: str
     role: ROLE
     stack: STACK
@@ -22,22 +23,29 @@ class Member(abc.ABC):
     deactivated_date: int = None # milliseconds
     active: ACTIVE
     projects: List[Project]
+    linkedin_url: str = None
+    github_url: str = None
+    is_admin: bool = False
     MIN_NAME_LENGTH = 2
     CELLPHONE_LENGTH = 11
 
     def __init__(self,
-                 name:str,
-                 email:str,
-                 ra:str,
-                 role:ROLE,
-                 stack:STACK,
-                 year:int,
-                 cellphone:str,
-                 course: COURSE,
-                 hired_date: int, 
-                 active: ACTIVE,
-                 deactivated_date: int = None, 
-                 projects: List[Project] = None
+                name:str,
+                email:str,
+                email_maua: str,
+                ra:str,
+                role:ROLE,
+                stack:STACK,
+                year:int,
+                cellphone:str,
+                course: COURSE,
+                hired_date: int, 
+                active: ACTIVE,
+                deactivated_date: int = None, 
+                projects: List[Project] = None,
+                linkedin_url: str = None,
+                github_url: str = None,
+                is_admin: bool = False
                 ):
 
         if not Member.validate_name(name):
@@ -51,6 +59,10 @@ class Member(abc.ABC):
         if not Member.validate_email_dev(email):
             raise EntityError('email')
         self.email = email
+        
+        if not Member.validate_email(email_maua):
+            raise EntityError('email_maua')
+        self.email_maua = email_maua
         
         if type(role) != ROLE:
             raise EntityError("role")
@@ -110,6 +122,20 @@ class Member(abc.ABC):
                 raise EntityError("active")
         self.deactivated_date = deactivated_date
         
+        if linkedin_url is not None:
+            if not Member.validate_url(linkedin_url):
+                raise EntityError("linkedin_url")
+        self.linkedin_url = linkedin_url
+
+        if github_url is not None:
+            if not Member.validate_url(github_url):
+                raise EntityError("github_url")
+        self.github_url = github_url
+        
+        if type(is_admin) != bool:
+            raise EntityError("is_admin")
+        self.is_admin = is_admin
+        
         
     @staticmethod
     def validate_year(year: int) -> bool:
@@ -132,17 +158,24 @@ class Member(abc.ABC):
 
         return ra.isdecimal() and len(ra) == 8
 
+
     @staticmethod
-    def validate_email_dev(email) -> bool:
+    def validate_email(email) -> bool:
         if email == None:
             return False
         if type(email) != str:
             return False
-        if email[-18:] != ".devmaua@gmail.com":
-            return False
         regex = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
         return bool(re.fullmatch(regex, email))
 
+    @staticmethod
+    def validate_email_dev(email) -> bool:
+        if Member.validate_email(email) is not True:
+            return False
+        if email[-18:] != ".devmaua@gmail.com":
+            return False
+        return True
+    
     @staticmethod
     def validate_name(name) -> bool:
 
@@ -179,4 +212,10 @@ class Member(abc.ABC):
             return False
         
         return True
-        
+    
+    @staticmethod
+    def validate_url(url: str) -> bool:
+        if type(url) != str:
+            return False
+        regex = re.compile(r"^((?:https?|ftp)://)"r"([^\s/:]+)"r"((?:/[\w#!:.?+=&%@!-/]*)?)$",re.IGNORECASE) # considerando url https://...
+        return bool(re.fullmatch(regex, url))
