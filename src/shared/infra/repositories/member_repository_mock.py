@@ -47,6 +47,7 @@ class MemberRepositoryMock(IMemberRepository):
             Member(
             name="Vitor Guirão MPNTM",
             email="vsoller.devmaua@gmail.com",
+            email_maua="21.01731-0@maua.br",
             ra="21017310",
             role=ROLE.DIRECTOR,
             stack=STACK.INFRA,
@@ -63,6 +64,7 @@ class MemberRepositoryMock(IMemberRepository):
             Member(
             name="Joao Branco",
             email="jbranco.devmaua@gmail.com",
+            email_maua="21.01075-7@maua.br",
             ra="21010757",
             role=ROLE.HEAD,
             stack=STACK.BACKEND,
@@ -81,6 +83,7 @@ class MemberRepositoryMock(IMemberRepository):
             Member(
             name="Luigi Televisão",
             email="ltelevisao.devmaua@gmail.com",
+            email_maua="22.01731-0@maua.br",
             ra="22017310",
             role=ROLE.DEV,
             stack=STACK.DATA_SCIENCE,
@@ -96,6 +99,7 @@ class MemberRepositoryMock(IMemberRepository):
             Member(
             name="Little Ronald",
             email="lronald.devmaua@gmail.com",
+            email_maua="10.01731-0@maua.br",
             ra="10017310",
             role=ROLE.DIRECTOR,
             stack=STACK.FRONTEND,
@@ -117,6 +121,7 @@ class MemberRepositoryMock(IMemberRepository):
             Member(
             name="Marcos Pereira Neto",
             email="mneto.devmaua@gmail.com",
+            email_maua="19.01731-0@maua.br",
             ra="19017310",
             role=ROLE.PO,
             stack=STACK.PO,
@@ -133,6 +138,7 @@ class MemberRepositoryMock(IMemberRepository):
             Member(
             name="Rubicks Cube",
             email="rcube.devmaua@gmail.com",
+            email_maua="19.01731-1@maua.br",
             ra="19017311",
             role=ROLE.DEV,
             stack=STACK.BACKEND,
@@ -150,6 +156,7 @@ class MemberRepositoryMock(IMemberRepository):
             Member(
             name="Django Fett",
             email="dfett.devmaua@gmail.com",
+            email_maua="17.03373-0@maua.br",
             ra="17033730",
             role=ROLE.INTERNAL,
             stack=STACK.INTERNAL,
@@ -165,6 +172,7 @@ class MemberRepositoryMock(IMemberRepository):
             Member(
             name="Henrique Gustavo de Souza",
             email="hsouza.devmaua@gmail.com",
+            email_maua="23.01731-0@maua.br",
             ra="23017310",
             role=ROLE.DEV,
             stack=STACK.UX_UI,
